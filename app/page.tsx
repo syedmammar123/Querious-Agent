@@ -28,7 +28,10 @@ export default function Chat() {
   const [input, setInput] = useState('');
   const [expandedToolCalls, setExpandedToolCalls] = useState<Set<string>>(new Set());
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const { messages, sendMessage, isLoading } = useChat();
+  const { messages, sendMessage, status } = useChat();
+  const isLoading = status === "submitted" || status === "streaming";
+
+
 
   useEffect(() => {
     if (textareaRef.current) {
