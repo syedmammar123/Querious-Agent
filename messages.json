@@ -1,0 +1,116 @@
+[
+    {
+        "parts": [
+            {
+                "type": "text",
+                "text": "hi"
+            }
+        ],
+        "id": "JnGGP32lIUghRSe8",
+        "role": "user"
+    },
+    {
+        "id": "4vTRJjKpUpAD04RP",
+        "role": "assistant",
+        "parts": [
+            {
+                "type": "step-start"
+            },
+            {
+                "type": "text",
+                "text": "Hello! How can I assist you with your database queries today?",
+                "providerMetadata": {
+                    "openai": {
+                        "itemId": "msg_0289f5fe4fede52f006906945fbd2c8190af376b5c0d38ee3b"
+                    }
+                },
+                "state": "done"
+            }
+        ]
+    },
+    {
+        "parts": [
+            {
+                "type": "text",
+                "text": "how much sales did we do today?"
+            }
+        ],
+        "id": "umssggkCCqAjxl6q",
+        "role": "user"
+    },
+    {
+        "id": "2s46nBcq7ift94uc",
+        "role": "assistant",
+        "parts": [
+            {
+                "type": "step-start"
+            },
+            {
+                "type": "tool-dbSchemaTool",
+                "toolCallId": "call_pJcaJ9Rpvg4bYSCIjkwrPkv6",
+                "state": "output-available",
+                "input": {},
+                "output": "CREATE TABLE products (\n  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n  name TEXT NOT NULL,\n  category TEXT NOT NULL,\n  price REAL NOT NULL,\n  stock INTEGER DEFAULT 0 NOT NULL,\n  created_at TEXT DEFAULT CURRENT_TIMESTAMP\n);\n\nCREATE TABLE sales (\n  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n  product_id INTEGER NOT NULL,\n  quantity INTEGER NOT NULL,\n  total_amount REAL NOT NULL,\n  sale_date TEXT DEFAULT CURRENT_TIMESTAMP,\n  customer_name TEXT NOT NULL,\n  region TEXT NOT NULL,\n  FOREIGN KEY (product_id) REFERENCES products(id) ON UPDATE NO ACTION ON DELETE NO ACTION\n);",
+                "callProviderMetadata": {
+                    "openai": {
+                        "itemId": "fc_0289f5fe4fede52f0069069472c0f48190a48b406a3a4e234b"
+                    }
+                }
+            },
+            {
+                "type": "step-start"
+            },
+            {
+                "type": "tool-dbCallTool",
+                "toolCallId": "call_kU94GRUOsrIacg24Y698flBM",
+                "state": "output-available",
+                "input": {
+                    "query": "SELECT SUM(total_amount) AS total_sales_today FROM sales WHERE DATE(sale_date) = DATE('now');"
+                },
+                "output": {
+                    "columns": [
+                        "total_sales_today"
+                    ],
+                    "columnTypes": [
+                        ""
+                    ],
+                    "rows": [
+                        [
+                            9214.43
+                        ]
+                    ],
+                    "rowsAffected": 0,
+                    "lastInsertRowid": null
+                },
+                "callProviderMetadata": {
+                    "openai": {
+                        "itemId": "fc_0289f5fe4fede52f006906947456588190bc5bf9163ff0baa6"
+                    }
+                }
+            },
+            {
+                "type": "step-start"
+            },
+            {
+                "type": "text",
+                "text": "Today's total sales amount to $9,214.43.",
+                "providerMetadata": {
+                    "openai": {
+                        "itemId": "msg_0289f5fe4fede52f00690694761cb88190b861199e98f4846e"
+                    }
+                },
+                "state": "done"
+            }
+        ]
+    },
+    {
+        "parts": [
+            {
+                "type": "text",
+                "text": "hi"
+            }
+        ],
+        "id": "WB0Dlb0ecmCx7St4",
+        "role": "user"
+    }
+]
