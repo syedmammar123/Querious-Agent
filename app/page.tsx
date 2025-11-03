@@ -413,7 +413,7 @@ export default function Chat() {
               placeholder="Ask a question about your database..."
               disabled={isLoading}
               rows={1}
-              className="w-full px-4 py-3 pr-12 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 disabled:opacity-50 disabled:cursor-not-allowed resize-none min-h-[48px] max-h-32 overflow-y-auto"
+              className="[&::-webkit-scrollbar]:hidden scrollbar-none w-full px-4 py-3 pr-12 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 disabled:opacity-50 disabled:cursor-not-allowed resize-none min-h-[48px] max-h-32 overflow-y-auto"
             />
             <button
               type="submit"

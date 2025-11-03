@@ -1,5 +1,6 @@
 import { db } from '@/db/db';
 import { openai } from '@ai-sdk/openai';
+import { groq } from '@ai-sdk/groq';
 import { streamText, UIMessage, convertToModelMessages, tool, stepCountIs } from 'ai';
 import z from 'zod';
 
@@ -45,7 +46,7 @@ export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
 
   const result = streamText({
-    model: openai('gpt-4o'),
+    model: groq('openai/gpt-oss-20b'),
     messages: convertToModelMessages(messages),
     system: SYSTEM_PROMPT,
     stopWhen: stepCountIs(5),
